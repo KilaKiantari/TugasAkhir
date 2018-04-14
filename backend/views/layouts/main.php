@@ -61,14 +61,13 @@ AppAsset::register($this);
                 ]
             ],
             ['label' => 'guru', 'items'=>[
-                    ['label' => 'Profil', 'url' => ['/guruprofil/index']],
                     ['label' => 'Tugas Pendidikan', 'url' => ['/gurutugaspendidikan/index']],
                     ['label' => 'Group', 'url' => ['/gurugroup/index']],
                     ['label' => 'Lihat Grafik', 'url' => ['/gurulihatgrafik/index']],
                 ]
             ],
             ['label' => 'orangtua', 'items'=>[
-                    ['label' => 'Daftar Tugas', 'url' => ['/orangtuatugaspendidikan/index']],
+                    ['label' => 'Daftar Tugas', 'url' => ['/orangtuatugas/index']],
                     ['label' => 'Lihat Grafik', 'url' => ['/orangtualihatgrafik/index']],
                 ]
             ]

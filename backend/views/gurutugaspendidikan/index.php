@@ -5,9 +5,9 @@ use yii\widgets\ActiveForm;
 
 
 use backend\models\Tugas;
-use backend\controllers\SiswatugasController;
+use backend\controllers\gurutugaspendidikanController;
 
-$this->title = 'User || Siswa';
+$this->title = 'Daftar Tugas';
 ?>
 
 <div class="row">
@@ -16,6 +16,7 @@ $this->title = 'User || Siswa';
 	<p>
         <?= Html::a('Create Tugas', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+	
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -33,8 +34,8 @@ $this->title = 'User || Siswa';
 				<tr>
 					<td><?php echo $n;?></td>
 					<td><?php echo Html::encode($key->nama_tugas);?></td>
-					<td><?php echo SiswatugasController::listKategori($key->kategori);?></td>
-					<td><?php echo SiswatugasController::listStatustugas($key->status_tugas);?></td>
+					<td><?php echo gurutugaspendidikanController::listKategori($key->kategori);?></td>
+					<td><?php echo gurutugaspendidikanController::listStatustugas($key->status_tugas);?></td>
 					<td><?php echo Html::encode($key->keterangan);?></td>
 					<td><?php echo Html::encode($key->tanggal_tugas);?></td>
 					<td>

@@ -5,17 +5,15 @@ use yii\widgets\ActiveForm;
 
 
 use backend\models\Tugas;
-use backend\controllers\SiswatugasController;
+use backend\controllers\SiswahistoritugasController;
 
-$this->title = 'User || Siswa';
+$this->title = 'Histori Tugas';
 ?>
 
 <div class="row">
 	<h3 >Daftar Tugas</h3>
 	<hr>
-	<p>
-        <?= Html::a('Create Tugas', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+	
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -28,19 +26,19 @@ $this->title = 'User || Siswa';
 			</tr>
 		</thead>
 		<tbody>
-			<?php $n=0; foreach ($tugass as $key) { $n++;?>
+			<?php $n=0; foreach ($tugasb as $key) { $n++;?>
 			<php $
 				<tr>
 					<td><?php echo $n;?></td>
 					<td><?php echo Html::encode($key->nama_tugas);?></td>
-					<td><?php echo SiswatugasController::listKategori($key->kategori);?></td>
-					<td><?php echo SiswatugasController::listStatustugas($key->status_tugas);?></td>
+					<td><?php echo SiswahistoritugasController::listKategori($key->kategori);?></td>
+					<td><?php echo SiswahistoritugasController::listStatustugas($key->status_tugas);?></td>
 					<td><?php echo Html::encode($key->keterangan);?></td>
 					<td><?php echo Html::encode($key->tanggal_tugas);?></td>
 					<td>
 						<?php echo Html::a(
-							'<i class="glyphicon glyphicon-search"></i> Detail',
-							['view','id'=>$key->id_tugas],
+							'<i class="checklist"></i> Checklist',
+							['checklist','id'=>$key->id_tugas],
 							['class'=>'btn btn-sm btn-info']
 							);
 						?>
