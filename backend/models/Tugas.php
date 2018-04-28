@@ -3,17 +3,22 @@
 namespace backend\models;
 
 use Yii;
-use yii\helpers\ArrayHeLper;
+use yii\helpers\ArrayHelper;
+
 
 /**
  * This is the model class for table "tugas".
  *
  * @property integer $id_tugas
  * @property string $nama_tugas
- * @property integer $matpel_id
+ * @property integer $siswa_id
  * @property string $kategori
+ * @property string $keterangan
  * @property string $status_tugas
  * @property string $tanggal_tugas
+ * @property string $tanggal_selesai
+ * @property string $author
+ * @property integer $group_id
  */
 class Tugas extends \yii\db\ActiveRecord
 {
@@ -31,10 +36,13 @@ class Tugas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nama_tugas', 'matpel_id', 'kategori', 'keterangan' , 'status_tugas', 'tanggal_tugas'], 'required'],
-            [['nama_tugas', 'kategori', 'keterangan', 'status_tugas'], 'string'],
-            [['matpel_id'], 'integer'],
-            [['tanggal_tugas'], 'safe'],
+            [['nama_tugas', 'siswa_id', 'kategori', 'keterangan', 'tanggal_tugas', 'tanggal_selesai', 'author', 'group_id'], 'required'],
+            [['nama_tugas'], 'string'],
+            [['siswa_id', 'group_id'], 'integer'],
+            [['tanggal_tugas', 'tanggal_selesai'], 'safe'],
+            [['kategori', 'status_tugas'], 'string', 'max' => 1],
+            [['keterangan'], 'string', 'max' => 225],
+            [['author'], 'string', 'max' => 100],
         ];
     }
 
@@ -46,32 +54,17 @@ class Tugas extends \yii\db\ActiveRecord
         return [
             'id_tugas' => 'Id Tugas',
             'nama_tugas' => 'Nama Tugas',
-            'matpel_id' => 'Matpel ID',
+            'siswa_id' => 'Siswa ID',
             'kategori' => 'Kategori',
-            'keterangan'=>'Keterangan',
+            'keterangan' => 'Keterangan',
             'status_tugas' => 'Status Tugas',
             'tanggal_tugas' => 'Tanggal Tugas',
+            'tanggal_selesai' => 'Tanggal Selesai',
+            'author' => 'Author',
+            'group_id' => 'Group ID',
         ];
-
-    }
-    public function listKategori()
-    {
-        $kategori= [
-            ["id"=>"p","kategori"=>"Pendidikan"],
-            ["id"=>"o","kategori"=>"Organisasi"],
-            ["id"=>"l","kategori"=>"Lain-Lain"]
-           ];
-
-            return ArrayHeLper::map($kategori,"id", "kategori");
     }
 
-       public function listStatustugas()
-    {
-        $status_tugas= [
-            ["id"=>"b","status_tugas"=>"Belum"],
-            ["id"=>"s","status_tugas"=>"Sudah"]
-           ];
-
-            return ArrayHeLper::map($status_tugas,"id", "status_tugas");
-    }
+    
+     
 }

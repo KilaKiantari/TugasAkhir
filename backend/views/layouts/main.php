@@ -49,18 +49,16 @@ AppAsset::register($this);
     else {
 
         $menuItems = [
-            ['label' => 'admin', 'items'=>[
-                    ['label' => 'User', 'url' => ['/adminuser/index']],
-                ]
-            ],
             ['label' => 'siswa', 'items'=>[
                     ['label' => 'Tugas', 'url' => ['/siswatugas/index']],
+                    ['label' => 'Tugas Pendidikan', 'url' => ['/siswatugaspendidikan/index']],
                     ['label' => 'Histori Tugas', 'url' => ['/siswahistoritugas/index']],
                     ['label' => 'Skala Prioritas', 'url' => ['/siswaskalaprioritastugas/index']],
                     ['label' => 'Lihat Grafik', 'url' => ['/siswalihatgrafik/index']],
                 ]
             ],
             ['label' => 'guru', 'items'=>[
+                    ['label' => 'Profil', 'url' => ['/guruprofil/index']],
                     ['label' => 'Tugas Pendidikan', 'url' => ['/gurutugaspendidikan/index']],
                     ['label' => 'Group', 'url' => ['/gurugroup/index']],
                     ['label' => 'Lihat Grafik', 'url' => ['/gurulihatgrafik/index']],

@@ -2,20 +2,19 @@
 
 namespace backend\controllers;
 
-
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
-
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\db\Query;
 
 use backend\models\Tugas;
-use backend\models\TugasForm;
+use backend\models\SiswatugaspendidikanForm;
 
-class GurutugaspendidikanController extends \yii\web\Controller
+class SiswatugaspendidikanController extends \yii\web\Controller
 {
-	public function behaviors()
+   public function behaviors()
     {
         return [
             'verbs' => [
@@ -31,37 +30,42 @@ class GurutugaspendidikanController extends \yii\web\Controller
     {
         $connection = Yii::$app->getDb();
         $command = $connection->createCommand("
-                SELECT id_tugas,nama_tugas,keterangan,tanggal_tugas, author, group_id
-                FROM tugas
-                WHERE author = 'g'");
+        		SELECT id_tugas,nama_tugas, kategori, keterangan, status_tugas, tanggal_tugas, tanggal_selesai, author, group_id
+				FROM tugas
+				WHERE kategori = 'p'");
 
-                $result = $command->queryAll();
-                return $this->render('index',[
-                        'result'=>$result]);
+				$result = $command->queryAll();
+				return $this->render('index',[
+						'result'=>$result]);
 
     }
 
     public function actionView($id)
     {
+      
+				
+
         $tugas = Tugas::find()->where(['id_tugas'=>$id])->one();
         return $this->render('view', ['model' => $tugas]);
     }
 
-    public function actionCreate()
+
+    
+         public function actionCreate()
     {
        $tabel = new Tugas();
-       $model = new TugasForm();
+       $model = new SiswatugaspendidikanForm();
 
        if($model ->load(Yii::$app->request->post())){
+        $tabel->group_id = $model->group_id;
         $tabel->nama_tugas = $model->nama_tugas;
         $tabel->siswa_id = 0;
-        $tabel->kategori = 'p';
+        $tabel->kategori = $model->kategori;
         $tabel->keterangan = $model->keterangan;
         $tabel->status_tugas = 'b';
         $tabel->tanggal_tugas = $model->tanggal_tugas;
         $tabel->tanggal_selesai = date('Y-m-d');
         $tabel->author = $model->author;
-        $tabel->group_id = $model->group_id;
         $tabel->save();
 
         return $this->redirect(['index']);
@@ -72,6 +76,8 @@ class GurutugaspendidikanController extends \yii\web\Controller
                 ]);
        }
     }
+
+    
 
     public function actionUpdate($id)
     {
@@ -98,13 +104,23 @@ class GurutugaspendidikanController extends \yii\web\Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-  public function listAuthor()
+
+   public function listKategori()
     {
-        $author = [
-            ["id"=>"g","author"=>"guru"],
+        $kategori = [
+            ["id"=>"p","kategori"=>"pendidikan"],
            
         ];
-        return ArrayHelper::map($author, "id", "author");
+        return ArrayHelper::map($kategori, "id", "kategori");
     }
-   
+     public function listStatustugas()
+     {
+        $status_tugas = [
+            ["id"=>"b","status_tugas"=>"belum"],
+            ["id"=>"s","status_tugas"=>"sudah"]
+
+        ];
+        return ArrayHelper::map($status_tugas, "id", "status_tugas");
+     }
+
 }

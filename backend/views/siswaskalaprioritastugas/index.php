@@ -27,7 +27,7 @@ $this->title = 'Skala Prioritas Tugas';
 				<tr>
 					<td><?php echo $n;?></td>
 					<td><?php echo Html::encode($key->nama_tugas);?></td>
-					<td><?php echo SiswaskalaprioritastugasController::listKategori($key->kategori);?></td>
+					<td><?php echo Html::encode($key->kategori);?></td>
 					<td><?php echo Html::encode($key->tanggal_tugas);?></td>
 				</tr>
 			<?php } ?>

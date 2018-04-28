@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 
-$this->title = 'Create User';
+$this->title = 'Create Tugas';
 $this->params['breadcrumbs'][] = ['label' => 'Daftar Tugas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

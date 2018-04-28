@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 
 
 use backend\models\Tugas;
+use backend\models\Grup;
 use backend\controllers\gurutugaspendidikanController;
 
 $this->title = 'Daftar Tugas';
@@ -21,27 +22,25 @@ $this->title = 'Daftar Tugas';
 		<thead>
 			<tr>
 				<th>No</th>
+				<th>Group id</th>
 				<th>Nama Tugas</th>
-				<th>Kategori</th>
-				<th>Status Tugas</th>
 				<th>Keterangan</th>
 				<th>Tanggal Tugas</th>
+				<th>Author</th>
 			</tr>
 		</thead>
 		<tbody>
-			<?php $n=0; foreach ($tugass as $key) { $n++;?>
-			<php $
-				<tr>
+			<?php $n=0; foreach ($result as $key) { $n++;?>
 					<td><?php echo $n;?></td>
-					<td><?php echo Html::encode($key->nama_tugas);?></td>
-					<td><?php echo gurutugaspendidikanController::listKategori($key->kategori);?></td>
-					<td><?php echo gurutugaspendidikanController::listStatustugas($key->status_tugas);?></td>
-					<td><?php echo Html::encode($key->keterangan);?></td>
-					<td><?php echo Html::encode($key->tanggal_tugas);?></td>
+					<td><?php echo Html::encode($key['group_id']);?></td>
+					<td><?php echo Html::encode($key['nama_tugas']);?></td>
+					<td><?php echo Html::encode($key['keterangan']);?></td>
+					<td><?php echo Html::encode($key['tanggal_tugas']);?></td>
+					<td><?php echo Html::encode($key['author']);?></td>
 					<td>
 						<?php echo Html::a(
 							'<i class="glyphicon glyphicon-search"></i> Detail',
-							['view','id'=>$key->id_tugas],
+							['view','id'=>$key['id_tugas']],
 							['class'=>'btn btn-sm btn-info']
 							);
 						?>

@@ -27,15 +27,15 @@ $this->title = 'Histori Tugas';
 		</thead>
 		<tbody>
 			<?php $n=0; foreach ($tugasb as $key) { $n++;?>
-			<php $
-				<tr>
+			<tr>
+				
 					<td><?php echo $n;?></td>
 					<td><?php echo Html::encode($key->nama_tugas);?></td>
-					<td><?php echo SiswahistoritugasController::listKategori($key->kategori);?></td>
-					<td><?php echo SiswahistoritugasController::listStatustugas($key->status_tugas);?></td>
+					<td><?php echo Html::encode($key->kategori);?></td>
+					<td><?php echo Html::encode($key->status_tugas);?></td>
 					<td><?php echo Html::encode($key->keterangan);?></td>
 					<td><?php echo Html::encode($key->tanggal_tugas);?></td>
-					<td>
+				<td>
 						<?php echo Html::a(
 							'<i class="checklist"></i> Checklist',
 							['checklist','id'=>$key->id_tugas],

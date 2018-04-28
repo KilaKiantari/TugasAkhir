@@ -6,11 +6,12 @@ namespace backend\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
-
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\db\Query;
 
 use backend\models\Tugas;
+use backend\models\SiswatugasForm;
 
 class SiswatugasController extends \yii\web\Controller
 {
@@ -38,17 +39,35 @@ class SiswatugasController extends \yii\web\Controller
         return $this->render('view', ['model' => $tugas]);
     }
 
-    public function actionCreate()
-    {
-        $model = new Tugas();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index','id' => $model->id_tugas]);
-        }
-        else{
-            return $this->render('create', ['model' => $model]);
-        }
+    
+         public function actionCreate()
+    {
+       $tabel = new Tugas();
+       $model = new SiswatugasForm();
+
+       if($model ->load(Yii::$app->request->post())){
+        $tabel->group_id = 0;
+        $tabel->nama_tugas = $model->nama_tugas;
+        $tabel->siswa_id = 0;
+        $tabel->kategori = $model->kategori;
+        $tabel->keterangan = $model->keterangan;
+        $tabel->status_tugas = 'b';
+        $tabel->tanggal_tugas = $model->tanggal_tugas;
+        $tabel->tanggal_selesai = date('Y-m-d');
+        $tabel->author = $model->author;
+        $tabel->save();
+
+        return $this->redirect(['index']);
     }
+     else{
+            return $this->render('create', [
+                'model'=>$model
+                ]);
+       }
+    }
+
+    
 
     public function actionUpdate($id)
     {
@@ -76,14 +95,22 @@ class SiswatugasController extends \yii\web\Controller
         }
     }
 
-    public function listKategori($isi)
+   public function listKategori()
     {
-    	$kategori = ["p"=>"pendidikan","o"=>"organisasi","l"=>"lain-lain"];
-    	return $kategori[$isi];
+        $kategori = [
+            ["id"=>"o","kategori"=>"organisasi"],
+            ["id"=>"l","kategori"=>"lain-lain"]
+        ];
+        return ArrayHelper::map($kategori, "id", "kategori");
     }
-     public function listStatustugas($isi)
-    {
-    	$status_tugas = ["b"=>"belum","s"=>"sudah"];
-    	return $status_tugas[$isi];
-    }
+     public function listStatustugas()
+     {
+        $status_tugas = [
+            ["id"=>"b","status_tugas"=>"belum"],
+            ["id"=>"s","status_tugas"=>"sudah"]
+
+        ];
+        return ArrayHelper::map($status_tugas, "id", "status_tugas");
+     }
+ 
 }

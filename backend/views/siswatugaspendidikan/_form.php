@@ -14,7 +14,10 @@ use yii\widgets\ActiveForm;
         ]
     ]); ?>
 
-    
+    <?= $form->field($model,'group_id')->dropDownList(
+            $model->listGroup(),
+            ['prompt'=>'-Pilih Group']
+        )->label('Group')?>
 
      <?= $form->field($model, 'author')->textInput(['maxlength' => true]) ?>
 

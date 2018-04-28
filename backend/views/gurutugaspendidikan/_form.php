@@ -12,23 +12,27 @@ use yii\widgets\ActiveForm;
         ]
     ]); ?>
 
+    
+    <?= $form->field($model,'group_id')->dropDownList(
+        $model->listGroup(),
+        ['prompt'=>'-Pilih Group']
+        )->label('Group')?>
+
     <?= $form->field($model, 'nama_tugas')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'matpel_id')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'kategori')->dropDownList(
-            $model->listKategori(),
-            ['prompt'=>'-Pilih Kategori-']
-        )->label('Kategori') ?>
 
     <?= $form->field($model, 'keterangan')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status_tugas')->dropDownList(
-            $model->listStatustugas(),
-            ['prompt'=>'-Pilih Status-']
-        )->label('Status Tugas') ?>
     
     <?= $form->field($model, 'tanggal_tugas')->textInput(['maxlength' => true])?>
+
+    <?= $form->field($model, 'author')->dropDownList(
+            $model->listAuthor(),
+            ['prompt'=>'-Pilih Author-']
+        )->label('Author')?>
+
+
+
 
     <div class="form-group">
         <?= Html::submitButton('Create', ['class' => 'btn btn-success']) ?>

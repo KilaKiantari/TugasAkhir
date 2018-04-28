@@ -20,16 +20,23 @@ class SiswaskalaprioritastugasController extends \yii\web\Controller
 
 	}
 
-	 public function listKategori($isi)
+	public function listKategori()
     {
-    	$kategori = ["p"=>"pendidikan","o"=>"organisasi","l"=>"lain-lain"];
-    	return $kategori[$isi];
+        $kategori = [
+            ["id"=>"p","kategori"=>"pendidikan"],
+            ["id"=>"o","kategori"=>"organisasi"],
+            ["id"=>"l","kategori"=>"lain-lain"],
+           
+        ];
+        return ArrayHelper::map($kategori, "id", "kategori");
     }
+     public function listStatustugas()
+     {
+        $status_tugas = [
+            ["id"=>"b","status_tugas"=>"belum"],
+            ["id"=>"s","status_tugas"=>"sudah"]
 
-     public function listStatustugas($isi)
-    {
-    	$status_tugas = ["b"=>"belum","s"=>"sudah"];
-    	return $status_tugas[$isi];
-    }
-
+        ];
+        return ArrayHelper::map($status_tugas, "id", "status_tugas");
+     }
 }
