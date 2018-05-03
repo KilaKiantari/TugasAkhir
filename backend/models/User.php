@@ -73,4 +73,16 @@ class User extends \yii\db\ActiveRecord
             'level' => 'Level',
         ];
     }
+
+        public function listLevel()
+     {
+        $level = [
+            ["id"=>"3","level"=>"orangtua"],
+            ["id"=>"2","level"=>"guru"]
+            ["id"=>"1","level"=>"siswa"]
+
+
+        ];
+        return ArrayHelper::map($level, "id", "level");
+     }
 }

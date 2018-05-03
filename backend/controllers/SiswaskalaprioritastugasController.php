@@ -15,8 +15,15 @@ class SiswaskalaprioritastugasController extends \yii\web\Controller
 {
      public function actionIndex()
     {
-        $tugas = Tugas::find()->all();
-        return $this->render('index', ['tugasb'=>$tugas]);
+        $connection = Yii::$app->getDb();
+        $command = $connection->createCommand("
+               SELECT nama_tugas,kategori,tanggal_tugas 
+               FROM tugas 
+               ORDER BY kategori DESC,tanggal_tugas ASC ");
+
+                $result = $command->queryAll();
+                return $this->render('index',[
+                        'result'=>$result]);
 
 	}
 

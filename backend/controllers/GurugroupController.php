@@ -9,29 +9,48 @@ use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\db\Query;
 use backend\models\Grup;
+use backend\models\GrupguruForm;
+
 
 class GurugroupController extends \yii\web\Controller
 {
     public function actionIndex()
     {
-        $grup = Grup::find()->all();
+        $grup = Grup::find()->where(['siswa_id'=>'0'])->all();
         return $this->render('index', ['grups'=>$grup]);
 
     }
 
       public function actionView($id)
     {
-    	$connection = Yii::$app->getDb();
-       $command = $connection->createCommand("
-        		SELECT grup.id_group, grup.siswa_id, grup.namagroup, siswa.nama_lengkap, siswa.sekolah,  orangtua.nama_orangtua 
-        		FROM grup 
-        		INNER JOIN siswa ON grup.siswa_id = siswa.id_siswa 
-        		INNER JOIN orangtua ON siswa.orangtua_id = orangtua.id_orangtua 
-        		WHERE grup.id_group = '".$id."'");
+        $result = Grup::find()->where(['namagroup'=>$id])->all();
+		return $this->render('view',['result'=>$result]);
+    }
 
-				$result = $command->queryAll();
-				return $this->render('view',[
-						'result'=>$result]);
+
+         public function actionCreate()
+    {
+       $tabel = new Grup();
+       $model = new GrupguruForm();
+
+       if($model ->load(Yii::$app->request->post())){
+        $tabel->namagroup = $model->namagroup;
+        $tabel->tugas_id = 0;
+        $tabel->matpel_id = $model->matpel_id;
+        $tabel->siswa_id = 0;
+        $tabel->guru_id = $model->guru_id;
+        $tabel->save();
+
+        return $this->redirect(['index']);
+    }
+     else{
+            return $this->render('create', [
+                'model'=>$model
+                ]);
+       }
     }
 
 }
+
+
+

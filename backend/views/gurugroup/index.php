@@ -12,6 +12,9 @@ $this->title = 'Group';
 <div class="row">
 	<h3 >Daftar Group</h3>
 	<hr>
+	<p>
+        <?= Html::a('Create Group', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 	
 	<table class="table table-striped">
 		<thead>
@@ -23,6 +26,7 @@ $this->title = 'Group';
 		</thead>
 		<tbody>
 			<?php $n=0; foreach ($grups as $key) { $n++;?>
+	
 				<tr>
 					<td><?php echo $n;?></td>
 					<td><?php echo Html::encode($key->namagroup);?>
@@ -30,7 +34,7 @@ $this->title = 'Group';
 					<td>
 						<?php echo Html::a(
 							'<i class="glyphicon glyphicon-search"></i> Detail',
-							['view','id'=>$key->id_group],
+							['view','id'=>$key->namagroup],
 							['class'=>'btn btn-sm btn-info']
 							);
 						?>

@@ -19,6 +19,7 @@ use yii\widgets\ActiveForm;
             ['prompt'=>'-Pilih Group']
         )->label('Group')?>
 
+
      <?= $form->field($model, 'author')->textInput(['maxlength' => true]) ?>
 
 

@@ -48,8 +48,8 @@ class SiswatugasForm extends Model
       public function listKategori()
     {
         $kategori = [
-            ["id"=>"o","kategori"=>"organisasi"],
-            ["id"=>"l","kategori"=>"lain-lain"]
+            ["id"=>"2","kategori"=>"organisasi"],
+            ["id"=>"1","kategori"=>"lain-lain"]
         ];
         return ArrayHelper::map($kategori, "id", "kategori");
     }

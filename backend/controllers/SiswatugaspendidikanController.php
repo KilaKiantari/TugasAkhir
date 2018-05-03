@@ -42,16 +42,13 @@ class SiswatugaspendidikanController extends \yii\web\Controller
 
     public function actionView($id)
     {
-      
-				
-
         $tugas = Tugas::find()->where(['id_tugas'=>$id])->one();
         return $this->render('view', ['model' => $tugas]);
     }
 
 
     
-         public function actionCreate()
+    public function actionCreate()
     {
        $tabel = new Tugas();
        $model = new SiswatugaspendidikanForm();
@@ -59,7 +56,7 @@ class SiswatugaspendidikanController extends \yii\web\Controller
        if($model ->load(Yii::$app->request->post())){
         $tabel->group_id = $model->group_id;
         $tabel->nama_tugas = $model->nama_tugas;
-        $tabel->siswa_id = 0;
+        $tabel->siswa_id = $model->siswa_id;
         $tabel->kategori = $model->kategori;
         $tabel->keterangan = $model->keterangan;
         $tabel->status_tugas = 'b';

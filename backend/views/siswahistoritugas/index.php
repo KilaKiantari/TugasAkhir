@@ -23,6 +23,7 @@ $this->title = 'Histori Tugas';
 				<th>Status Tugas</th>
 				<th>Keterangan</th>
 				<th>Tanggal Tugas</th>
+				<th>Tanggal Selesai</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -35,6 +36,7 @@ $this->title = 'Histori Tugas';
 					<td><?php echo Html::encode($key->status_tugas);?></td>
 					<td><?php echo Html::encode($key->keterangan);?></td>
 					<td><?php echo Html::encode($key->tanggal_tugas);?></td>
+					<td><?php echo Html::encode($key->tanggal_selesai);?></td>
 				<td>
 						<?php echo Html::a(
 							'<i class="checklist"></i> Checklist',

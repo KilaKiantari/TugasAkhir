@@ -29,10 +29,9 @@ class Guru extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nama_guru', 'tgl_lahir', 'sekolah', 'matpel_id'], 'required'],
+            [['nama_guru', 'tgl_lahir', 'sekolah', 'nama_matpel'], 'required'],
             [['nama_guru', 'sekolah'], 'string'],
             [['tgl_lahir'], 'safe'],
-            [['matpel_id'], 'integer'],
         ];
     }
 
@@ -46,7 +45,7 @@ class Guru extends \yii\db\ActiveRecord
             'nama_guru' => 'Nama Guru',
             'tgl_lahir' => 'Tgl Lahir',
             'sekolah' => 'Sekolah',
-            'matpel_id' => 'Matpel ID',
+            'nama_matpel' => 'Nama Matapelajaran',
         ];
     }
 }

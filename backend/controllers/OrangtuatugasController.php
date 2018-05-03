@@ -30,9 +30,9 @@ class OrangtuatugasController extends \yii\web\Controller
 	public function listKategori()
     {
         $kategori = [
-            ["id"=>"p","kategori"=>"pendidikan"],
-            ["id"=>"o","kategori"=>"organisasi"],
-            ["id"=>"l","kategori"=>"lain-lain"],
+            ["id"=>"3","kategori"=>"pendidikan"],
+            ["id"=>"2","kategori"=>"organisasi"],
+            ["id"=>"1","kategori"=>"lain-lain"],
            
         ];
         return ArrayHelper::map($kategori, "id", "kategori");

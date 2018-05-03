@@ -50,4 +50,16 @@ class Grup extends \yii\db\ActiveRecord
             'guru_id' => 'Guru ID',
         ];
     }
+
+     public function listGuru()
+    {
+        $guru = Guru::find()->all();
+        return ArrayHelper::map($guru, 'id_guru', 'nama_guru');
+    }
+
+     public function listMatpel()
+    {
+        $matapelajaran = Matapelajaran::find()->all();
+        return ArrayHelper::map($matapelajaran, 'id_matpel', 'nama_matpel');
+    }
 }

@@ -1,32 +1,26 @@
 <?php
 namespace backend\models;
-
-use Yii;
-use yii\base\Model;
 use yii\helpers\ArrayHelper;
-
 use common\models\User;
+use yii\base\Model;
+use Yii;
 
-use backend\models\Guru;
-
-
-Class UserForm extends Model{
+Class SignUpgurunextForm extends Model{
     public $firstname;
-    public $lastname;
     public $username;
     public $level;
+    public $guru_id;
     public $email;
     public $password;
-    public $idcabang;
-    public $idguru;
 
     public function rules(){
         return[
+            
             ['username', 'required'],
             ['firstname', 'required'],
-            ['lastname', 'required'],
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already exists'],
             ['username', 'string', 'min' => 2, 'max' => 255],
+
             ['level', 'required'],
 
             ['email', 'filter', 'filter' => 'trim'],
@@ -39,14 +33,14 @@ Class UserForm extends Model{
         ];
     }
 
-    public function daftarUser(){
+    public function signup(){
         if($this->validate()){
             $user = new User();
             $user->firstname = $this->firstname;
-            $user->lastname = $this->lastname;
             $user->username = $this->username;
             $user->email = $this->email;
-            $user->level = $this->level;
+            $user->level = '2';
+            $user->guru_id=$this->guru_id;
             $user->setPassword($this->password);
             $user->generateAuthKey();
             $user->save();
@@ -55,20 +49,14 @@ Class UserForm extends Model{
         return null;
     }
 
-    public function getLevel()
-    {
-        $level = ["1"=>"siswa","2"=>"guru","3"=>"orangtua"];
-        return $level[$this->level];
-    }
-
-    public function listLevel()
-    {
+     public function listLevel()
+     {
         $level = [
-            ["id"=>"1", "level"=>"siswa"],
-            ["id"=>"2", "level"=>"guru"],
-            ["id"=>"3", "level"=>"orangtua"],
-        
-        ];
-        return ArrayHelper::map($level, 'id', 'level');
-    }
+            ["id"=>"1","level"=>"siswa"],
+            ["id"=>"2","level"=>"guru"],
+            ["id"=>"3","level"=>"orangtua"],
+
+            ];
+        return ArrayHelper::map($level, "id", "level");
+     }
 }

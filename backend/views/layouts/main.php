@@ -45,14 +45,17 @@ AppAsset::register($this);
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-    }
-    else {
+        $menuItems[] = ['label' => 'SignUp Guru', 'url' => ['/site/signup-guru']];
+        $menuItems[] = ['label' => 'SignUp Siswa', 'url' => ['/site/signup-siswa']];
+   } else {
 
         $menuItems = [
             ['label' => 'siswa', 'items'=>[
+                    ['label' => 'Profil', 'url' => ['/siswaprofil/index']],
                     ['label' => 'Tugas', 'url' => ['/siswatugas/index']],
                     ['label' => 'Tugas Pendidikan', 'url' => ['/siswatugaspendidikan/index']],
                     ['label' => 'Histori Tugas', 'url' => ['/siswahistoritugas/index']],
+                    ['label' => 'Group', 'url' => ['/siswagroup/index']],
                     ['label' => 'Skala Prioritas', 'url' => ['/siswaskalaprioritastugas/index']],
                     ['label' => 'Lihat Grafik', 'url' => ['/siswalihatgrafik/index']],
                 ]

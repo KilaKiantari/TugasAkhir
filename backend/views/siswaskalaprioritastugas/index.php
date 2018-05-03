@@ -23,12 +23,12 @@ $this->title = 'Skala Prioritas Tugas';
 			</tr>
 		</thead>
 		<tbody>
-			<?php $n=0; foreach ($tugasb as $key) { $n++;?>
+			<?php $n=0; foreach ($result as $key) { $n++;?>
 				<tr>
 					<td><?php echo $n;?></td>
-					<td><?php echo Html::encode($key->nama_tugas);?></td>
-					<td><?php echo Html::encode($key->kategori);?></td>
-					<td><?php echo Html::encode($key->tanggal_tugas);?></td>
+					<td><?php echo Html::encode($key['nama_tugas']);?></td>
+					<td><?php echo Html::encode($key['kategori']);?></td>
+					<td><?php echo Html::encode($key['tanggal_tugas']);?></td>
 				</tr>
 			<?php } ?>
 		</tbody>

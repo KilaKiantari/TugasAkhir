@@ -11,6 +11,7 @@ use backend\models\Grup;
 
 class SiswatugaspendidikanForm extends Model
 {
+    public $siswa_id;
     public $group_id;
     public $nama_tugas;
     public $kategori;
@@ -35,6 +36,7 @@ class SiswatugaspendidikanForm extends Model
     public function attributeLabels()
     {
         return [
+            'siswa_id'=>'Siswa ID',
             'group_id'=>'Group ID',
             'nama_tugas' => 'Nama Tugas',
             'kategori'=>'Kategori',
@@ -50,7 +52,7 @@ class SiswatugaspendidikanForm extends Model
       public function listKategori()
     {
         $kategori = [
-            ["id"=>"P","kategori"=>"pendidikan"],
+            ["id"=>"3","kategori"=>"pendidikan"],
         ];
         return ArrayHelper::map($kategori, "id", "kategori");
     }
@@ -66,7 +68,7 @@ class SiswatugaspendidikanForm extends Model
 
       public function listGroup()
     {
-        $grup = Grup::find()->all();
+        $grup = Grup::find()->where(['siswa_id'=>Yii::$app->user->identity->siswa_id])->all();
         return ArrayHelper::map($grup, 'id_group', 'namagroup');
     }
 

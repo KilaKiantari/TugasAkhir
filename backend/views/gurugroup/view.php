@@ -8,7 +8,9 @@ use yii\widgets\ActiveForm;
 
 use backend\models\Grup;
 use backend\models\Guru;
+use backend\models\GruptugasForm;
 use backend\models\Tugas;
+use backend\models\Siswa;
 
 
 $this->title = 'Data Siswa || Orang tua';
@@ -25,19 +27,20 @@ $this->title = 'Data Siswa || Orang tua';
                         <th>No</th>
                         <th>Nama Group</th>
                         <th>Siswa</th>
-                        <th>Sekolah</th>
-                    
+                       
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $n=0; foreach ($result as $key) { $n++;?>
-
+                            <?php $grup = Grup::find()->where(['id_group'=>$key['id_group']])->one(); ?>
+                            <?php $nama_lengkap = Siswa::find()->where(['id_siswa'=>$grup['siswa_id']])->one(); ?>
+                            
                         <tr>
                             <td><?php echo $n;?></td>
-                            <td><?php echo Html::encode($key['namagroup']);?></td>
-                            <td><?php echo Html::encode($key['nama_lengkap']);?></td>
-                            <td><?php echo Html::encode($key['sekolah']);?></td>
+                            <td><?php echo Html::encode($key->namagroup);?></td>
+                            <td><?php echo Html::encode($nama_lengkap['nama_lengkap']);?></td>
+                      
                         </tr>
                     <?php } ?>
                 </tbody>
