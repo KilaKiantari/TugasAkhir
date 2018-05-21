@@ -7,7 +7,6 @@ use Yii;
 
 Class SignUpsiswanextForm extends Model{
     public $firstname;
-    public $lastname;
     public $username;
     public $level;
     public $siswa_id;
@@ -19,7 +18,6 @@ Class SignUpsiswanextForm extends Model{
             
             ['username', 'required'],
             ['firstname', 'required'],
-            ['lastname', 'required'],
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already exists'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
@@ -39,7 +37,6 @@ Class SignUpsiswanextForm extends Model{
         if($this->validate()){
             $user = new User();
             $user->firstname = $this->firstname;
-            $user->lastname = $this->lastname;
             $user->username = $this->username;
             $user->email = $this->email;
             $user->level = '1';
@@ -55,11 +52,11 @@ Class SignUpsiswanextForm extends Model{
     public function listLevel()
      {
         $level = [
-            ["id"=>"3","level"=>"orangtua"],
-            ["id"=>"2","level"=>"guru"],
             ["id"=>"1","level"=>"siswa"],
+            ["id"=>"2","level"=>"guru"],
+            ["id"=>"3","level"=>"orangtua"],
 
-        ];
+            ];
         return ArrayHelper::map($level, "id", "level");
      }
 

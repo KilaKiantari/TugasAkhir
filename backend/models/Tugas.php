@@ -65,6 +65,15 @@ class Tugas extends \yii\db\ActiveRecord
         ];
     }
 
+     public function listKategori()
+    {
+        $kategori = [
+            ["id"=>"2","kategori"=>"organisasi"],
+            ["id"=>"1","kategori"=>"lain-lain"]
+        ];
+        return ArrayHelper::map($kategori, "id", "kategori");
+    }
+
     
      
 }

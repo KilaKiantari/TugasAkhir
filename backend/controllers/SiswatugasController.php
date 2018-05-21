@@ -49,18 +49,19 @@ class SiswatugasController extends \yii\web\Controller
        if($model ->load(Yii::$app->request->post())){
         $tabel->group_id = 0;
         $tabel->nama_tugas = $model->nama_tugas;
-        $tabel->siswa_id = 0;
+        $tabel->siswa_id = $model->siswa_id;
         $tabel->kategori = $model->kategori;
         $tabel->keterangan = $model->keterangan;
         $tabel->status_tugas = 'b';
         $tabel->tanggal_tugas = $model->tanggal_tugas;
         $tabel->tanggal_selesai = date('Y-m-d');
-        $tabel->author = $model->author;
+        $tabel->author = 's';
         $tabel->save();
 
         return $this->redirect(['index']);
     }
      else{
+         $model->siswa_id = Yii::$app->user->identity->siswa_id;
             return $this->render('create', [
                 'model'=>$model
                 ]);
@@ -103,14 +104,6 @@ class SiswatugasController extends \yii\web\Controller
         ];
         return ArrayHelper::map($kategori, "id", "kategori");
     }
-     public function listStatustugas()
-     {
-        $status_tugas = [
-            ["id"=>"b","status_tugas"=>"belum"],
-            ["id"=>"s","status_tugas"=>"sudah"]
-
-        ];
-        return ArrayHelper::map($status_tugas, "id", "status_tugas");
-     }
+    
  
 }

@@ -13,19 +13,17 @@ class SiswatugasForm extends Model
 {
     public $nama_tugas;
     public $kategori;
-    public $status_tugas;
     public $keterangan;
+    public $siswa_id;
     public $tanggal_tugas;
-    public $tanggal_selesai;
-    public $author;
   
 
     public function rules()
     {
         return [
-            [['nama_tugas', 'siswa_id', 'kategori', 'status_tugas','keterangan', 'tanggal_tugas','tanggal_selesai', 'author', ], 'required'],
+            [['nama_tugas', 'siswa_id', 'kategori', 'keterangan', 'tanggal_tugas'], 'required'],
             [['siswa_id'], 'integer'],
-            [['nama_tugas', 'keterangan', 'kategori','author'],'string'],
+            [['nama_tugas', 'keterangan', 'kategori'],'string'],
             [['tanggal_tugas'], 'safe'],
         
         ];
@@ -35,12 +33,11 @@ class SiswatugasForm extends Model
     {
         return [
             'nama_tugas' => 'Nama Tugas',
+            'siswa_id'=>'Nama Siswa',
             'kategori'=>'Kategori',
-            'status_tugas'=>'Status Tugas',
             'keterangan' => 'Keterangan',
             'tanggal_tugas' => 'Tanggal Tugas',
-            'tanggal_selesai' => 'Tanggal Selesai',
-            'author' =>'Author'
+         
 
         ];
     }
@@ -53,14 +50,6 @@ class SiswatugasForm extends Model
         ];
         return ArrayHelper::map($kategori, "id", "kategori");
     }
-     public function listStatustugas()
-     {
-        $status_tugas = [
-            ["id"=>"b","status_tugas"=>"belum"],
-            ["id"=>"s","status_tugas"=>"sudah"]
-
-        ];
-        return ArrayHelper::map($status_tugas, "id", "status_tugas");
-     }
+    
 
 }

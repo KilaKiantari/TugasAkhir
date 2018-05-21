@@ -36,7 +36,7 @@ class TugasForm extends Model
             'nama_tugas' => 'Nama Tugas',
             'keterangan' => 'Keterangan',
             'tanggal_tugas' => 'Tanggal Tugas',
-            'author' =>'Author'
+            'author' =>'Author',
 
         ];
     }

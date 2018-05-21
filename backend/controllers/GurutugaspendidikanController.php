@@ -31,7 +31,7 @@ class GurutugaspendidikanController extends \yii\web\Controller
     {
         $connection = Yii::$app->getDb();
         $command = $connection->createCommand("
-                SELECT id_tugas,nama_tugas,keterangan,tanggal_tugas, author, group_id
+                SELECT id_tugas,nama_tugas,keterangan,tanggal_tugas, author, group_id,tanggal_selesai
                 FROM tugas
                 WHERE author = 'g'");
 

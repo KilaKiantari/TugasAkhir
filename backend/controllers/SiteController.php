@@ -160,10 +160,12 @@ class SiteController extends Controller
         $siswa = Siswa::find()->where(['id_siswa'=>$id])->one();
         $model = new SignUpsiswanextForm();
         if($model->load(Yii::$app->request->post())){
+                 $model->siswa_id=$siswa->id_siswa;
                 $model->signup();
                 return $this->redirect(['login']);
         }
         else{
+             $model->firstname= $siswa->nama_lengkap;
             return $this->render('signupsiswanext',[
                 'model' => $model,
             ]);

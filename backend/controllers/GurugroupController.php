@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\db\Query;
 use backend\models\Grup;
+use backend\models\Guru;
 use backend\models\GrupguruForm;
 
 
@@ -30,6 +31,8 @@ class GurugroupController extends \yii\web\Controller
 
          public function actionCreate()
     {
+
+    
        $tabel = new Grup();
        $model = new GrupguruForm();
 
@@ -40,10 +43,10 @@ class GurugroupController extends \yii\web\Controller
         $tabel->siswa_id = 0;
         $tabel->guru_id = $model->guru_id;
         $tabel->save();
-
         return $this->redirect(['index']);
     }
      else{
+            $model->guru_id = Yii::$app->user->identity->guru_id;
             return $this->render('create', [
                 'model'=>$model
                 ]);

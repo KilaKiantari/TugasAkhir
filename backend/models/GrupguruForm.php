@@ -38,16 +38,18 @@ class GrupguruForm extends Model
         ];
     }
 
-      public function listGuru()
-    {
-        $guru = Guru::find()->all();
-        return ArrayHelper::map($guru, 'id_guru', 'nama_guru');
-    }
-
      public function listMatpel()
     {
         $matapelajaran = Matapelajaran::find()->all();
         return ArrayHelper::map($matapelajaran, 'id_matpel', 'nama_matpel');
+    }
+
+   
+    public function listGuru()
+    {
+        $guru = Guru::find()->where(['id_guru'=>$this->guru_id])->one();
+        return ArrayHelper::map($guru, 'id_guru','nama_guru');
+    
     }
 
 }

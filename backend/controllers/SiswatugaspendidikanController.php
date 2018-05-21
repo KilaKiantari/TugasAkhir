@@ -2,10 +2,11 @@
 
 namespace backend\controllers;
 
+
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
-use yii\helpers\ArrayHelper;
+
 use yii\web\Controller;
 use yii\db\Query;
 
@@ -14,7 +15,7 @@ use backend\models\SiswatugaspendidikanForm;
 
 class SiswatugaspendidikanController extends \yii\web\Controller
 {
-   public function behaviors()
+    public function behaviors()
     {
         return [
             'verbs' => [
@@ -30,13 +31,13 @@ class SiswatugaspendidikanController extends \yii\web\Controller
     {
         $connection = Yii::$app->getDb();
         $command = $connection->createCommand("
-        		SELECT id_tugas,nama_tugas, kategori, keterangan, status_tugas, tanggal_tugas, tanggal_selesai, author, group_id
-				FROM tugas
-				WHERE kategori = 'p'");
+                SELECT id_tugas,nama_tugas,keterangan,tanggal_tugas, kategori, group_id,tanggal_selesai
+                FROM tugas
+                WHERE kategori = 'p'");
 
-				$result = $command->queryAll();
-				return $this->render('index',[
-						'result'=>$result]);
+                $result = $command->queryAll();
+                return $this->render('index',[
+                        'result'=>$result]);
 
     }
 
@@ -46,23 +47,21 @@ class SiswatugaspendidikanController extends \yii\web\Controller
         return $this->render('view', ['model' => $tugas]);
     }
 
-
-    
     public function actionCreate()
     {
        $tabel = new Tugas();
        $model = new SiswatugaspendidikanForm();
 
        if($model ->load(Yii::$app->request->post())){
-        $tabel->group_id = $model->group_id;
         $tabel->nama_tugas = $model->nama_tugas;
-        $tabel->siswa_id = $model->siswa_id;
+        $tabel->siswa_id = 0;
         $tabel->kategori = $model->kategori;
         $tabel->keterangan = $model->keterangan;
         $tabel->status_tugas = 'b';
         $tabel->tanggal_tugas = $model->tanggal_tugas;
         $tabel->tanggal_selesai = date('Y-m-d');
-        $tabel->author = $model->author;
+        $tabel->author ='s';
+        $tabel->group_id = $model->group_id;
         $tabel->save();
 
         return $this->redirect(['index']);
@@ -73,8 +72,6 @@ class SiswatugaspendidikanController extends \yii\web\Controller
                 ]);
        }
     }
-
-    
 
     public function actionUpdate($id)
     {
@@ -89,8 +86,8 @@ class SiswatugaspendidikanController extends \yii\web\Controller
 
     public function actionDelete($id)
     {
-    	$this->findModel($id)->delete();
-    	return $this->redirect(['index']);
+        $this->findModel($id)->delete();
+        return $this->redirect(['index']);
     }
 
     protected function findModel($id)
@@ -101,23 +98,5 @@ class SiswatugaspendidikanController extends \yii\web\Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-
-   public function listKategori()
-    {
-        $kategori = [
-            ["id"=>"p","kategori"=>"pendidikan"],
-           
-        ];
-        return ArrayHelper::map($kategori, "id", "kategori");
-    }
-     public function listStatustugas()
-     {
-        $status_tugas = [
-            ["id"=>"b","status_tugas"=>"belum"],
-            ["id"=>"s","status_tugas"=>"sudah"]
-
-        ];
-        return ArrayHelper::map($status_tugas, "id", "status_tugas");
-     }
-
+   
 }

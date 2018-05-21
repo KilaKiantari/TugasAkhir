@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use backend\models\GrupguruForm;
+use backend\models\Grup;
 
 ?>
 
@@ -16,11 +17,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'namagroup')->textInput(['maxlength' => true]) ?>
 
-      <?= $form->field($model, 'guru_id')->dropDownList(
-            $model->listGuru(),
-            ['prompt'=>'-Pilih Guru-']
-        )->label('Guru')?>
-        
+    <?= $form->field($model, 'guru_id')->textInput(['maxlength' => true]) ?>
+
    <?= $form->field($model, 'matpel_id')->dropDownList(
             $model->listMatpel(),
             ['prompt'=>'-Pilih Matpel-']

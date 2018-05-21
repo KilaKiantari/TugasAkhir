@@ -17,9 +17,12 @@ use yii\widgets\ActiveForm;
 ?>
      <?= $form->field($model, 'firstname')->textInput(['maxlength' => true])->textInput(['placeholder' => "Input Firstname"]) ?>
 
-    <?= $form->field($model, 'lastname')->textInput(['maxlength' => true])->textInput(['placeholder' => "Input Latname"]) ?>
-
     <?= $form->field($model, 'username')->textInput(['maxlength' => true])->textInput(['placeholder' => "Input Username"]) ?>
+
+      <?= $form->field($model, 'level')->dropDownList(
+            $model->listLevel(),
+            ['prompt'=>'-Pilih Level-']
+        )->label('Nama Level') ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true])->textInput(['placeholder' => "Input Email"]) ?>
     

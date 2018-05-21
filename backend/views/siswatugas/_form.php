@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     
 
-     <?= $form->field($model, 'author')->textInput(['maxlength' => true]) ?>
+     <?= $form->field($model, 'siswa_id')->textInput(['maxlength' => true]) ?>
 
 
     <?= $form->field($model, 'nama_tugas')->textInput(['maxlength' => true]) ?>
@@ -32,8 +32,6 @@ use yii\widgets\ActiveForm;
     
     <?= $form->field($model, 'tanggal_tugas')->textInput(['maxlength' => true])?>
 
-
-    <?= $form->field($model, 'tanggal_selesai')->textInput(['maxlength' => true])?>
 
     <div class="form-group">
         <?= Html::submitButton('Create', ['class' => 'btn btn-success']) ?>
