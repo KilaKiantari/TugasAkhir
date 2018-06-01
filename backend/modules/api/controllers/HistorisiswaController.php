@@ -53,8 +53,8 @@ public function actionIndex($id)
         $model->status_tugas='s';
         $model->tanggal_selesai=date('Y-m-d');
         if($model->save()){
-            $result = $command->queryAll();
-                return ['status'=>'OK', 'results'=>$result];
+            // $result = $command->queryAll();
+                return ['status'=>'OK', 'results'=>$model];
         }
     
     }

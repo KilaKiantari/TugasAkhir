@@ -49,6 +49,28 @@ Class SignUpgurunextForm extends Model{
         return null;
     }
 
+     public function signup2(){
+        if($this->validate()){
+            $user = new User();
+            $user->firstname = $this->firstname;
+            $user->username = $this->username;
+            $user->email = $this->email;
+            $user->level = '2';
+            $user->guru_id=$this->guru_id;
+            $user->setPassword($this->password);
+            $user->generateAuthKey();
+            if($user->save()){
+                return true;
+            }
+            else{
+                return false;
+            }
+           // $user->save();
+            //return $user->save();
+        }
+        return false;
+    }
+
      public function listLevel()
      {
         $level = [

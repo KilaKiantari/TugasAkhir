@@ -25,12 +25,14 @@ class DaftartugaspendidikansiswaController extends Controller
 
 		  public function actionIndex($id)
     {
+        //kirim index harus id = siswaid_tanggal
     	Yii::$app->response->format = Response::FORMAT_JSON;
         $connection = Yii::$app->getDb();
+        $pecahid = explode('_', $id);
         $command = $connection->createCommand("
         		SELECT id_tugas,nama_tugas, kategori, keterangan, status_tugas, tanggal_tugas, tanggal_selesai, author, group_id
 				FROM tugas
-				WHERE siswa_id ='".$id."'");
+				WHERE siswa_id ='".$pecahid[0]."' AND tanggal_tugas LIKE '".$pecahid[1]."%'");
 				$result = $command->queryAll();
 				return ['status'=>'OK', 'results'=>$result];
 
